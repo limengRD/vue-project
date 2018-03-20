@@ -10,12 +10,9 @@ const router = new VueRouter({
             path:'/home',
             component:home,
             children:[
+
                 {
-                    path: '/',
-                    redirect: showlist
-                },
-                {
-                    path: '/showlist',
+                    path: '/web',
                     component: showlist
                 }
             ]

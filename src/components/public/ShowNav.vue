@@ -1,7 +1,7 @@
 <template>
     <div class="shownav">
         <ul>
-            <router-link tag="li" to="/">前端</router-link>
+            <router-link tag="li" to="/web">前端</router-link>
         </ul>
     </div>
 </template>
