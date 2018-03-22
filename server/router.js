@@ -61,4 +61,7 @@ router.post('/showList',(req,res) => {
         res.json({list:[{title:'title',words:['php','php','php']},{title:'title',words:['php','php','php']},{title:'title',words:['php','php','php']}]})
     }
 })
+router.post('/saveArtical',(req,res) => {
+    console.log(req.body.artical)
+})
 module.exports = router
