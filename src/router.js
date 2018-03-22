@@ -4,17 +4,26 @@ import writer from './components/writer/Writer.vue'
 import showlist from './components/public/ShowList.vue'
 
 const router = new VueRouter({
+    linkActiveClass:'list-active',
     routes:[
-        {path: '/',redirect: home},
+        {
+            path: '/',
+            redirect: '/home',
+            component: home,
+        },
         {   
             path:'/home',
             component:home,
             children:[
-
                 {
-                    path: '/web',
+                    path: '/',
+                    redirect: 'web',
                     component: showlist
-                }
+                },
+                {
+                    path: ':nav',
+                    component: showlist
+                },
             ]
         },
         {path:'/writer',component:writer}

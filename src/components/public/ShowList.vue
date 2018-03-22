@@ -1,36 +1,15 @@
 <template>
     <ul class="showlist-ul">
-        <li>
+        <li v-for="(item,index) in list">
             <div class="list-main">
                 <div class="list-title">
-                    <a href="#">tittle</a>
+                    <a href="#">{{item.title}}</a>
                 </div>
                 <div class="list-body">
                     <ul>
-                        <li>
+                        <li v-for="word in item.words">
                             <div>
-                                <a href="">body</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="list-main">
-                <div class="list-title">
-                    <a href="#">tittle</a>
-                </div>
-                <div class="list-body">
-                    <ul>
-                        <li>
-                            <div>
-                                <a href="">标题</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                <a href="">标签</a>
+                                <a href="">{{word}}</a>
                             </div>
                         </li>
                     </ul>
@@ -42,7 +21,24 @@
 
 <script>
 export default {
-  
+    data(){
+        return {
+            list: []
+        }
+    },
+    created() {
+        this.$http.post('/showFirstList').then(response => {
+           this.list = response.data.list
+        })
+    },
+    watch: {
+        '$route' (to, from) {
+            var navList = this.$route.params.nav
+            this.$http.post('/showList',{navList:navList}).then(response => {
+            this.list = response.data.list
+        })
+    }
+  }
 }
 </script>
 
@@ -67,8 +63,12 @@ export default {
     .list-title {
         margin: 10px 0;
     }
+    .list-title a {
+        color: #000;
+    }
     .list-body ul li {
         float: left;
         margin-right: 20px;
     }
+
 </style>
