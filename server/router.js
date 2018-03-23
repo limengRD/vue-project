@@ -61,7 +61,17 @@ router.post('/showList',(req,res) => {
         res.json({list:[{title:'title',words:['php','php','php']},{title:'title',words:['php','php','php']},{title:'title',words:['php','php','php']}]})
     }
 })
-router.post('/saveArtical',(req,res) => {
-    console.log(req.body.artical)
+// router.post('/saveArtical',(req,res) => {
+//     var artical = req.body.artical
+
+//     conn.query("insert into articals set?",(err,result) => {
+//         if(result.affectedRows !== 1) return res.json({err_code: 1,message: '保存失败！'})
+//         res.json({err_code: 0 ,message: '保存成功！'})
+//     })
+// })
+router.get('/showMyArtical',(req,res) => {
+    conn.query('select * from articals',(err,result) => {
+        res.json(result)
+    })
 })
 module.exports = router

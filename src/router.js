@@ -2,6 +2,7 @@ import VueRouter from 'vue-router'
 import home from './components/home/Home.vue'
 import writer from './components/writer/Writer.vue'
 import showlist from './components/public/ShowList.vue'
+import myartical from './components/myartical/myartical.vue'
 
 const router = new VueRouter({
     linkActiveClass:'list-active',
@@ -26,7 +27,8 @@ const router = new VueRouter({
                 },
             ]
         },
-        {path:'/writer',component:writer}
+        {path:'/writer',component:writer},
+        {path:'/myartical',component:myartical}
     ]
 })
 

@@ -6,6 +6,7 @@
                 <ul class="menu-nav-ul">
                     <router-link tag="li" to="/home">首页</router-link>
                     <router-link tag="li" to="/writer">写文章</router-link>
+                    <router-link tag="li" to="/myartical">我的文章</router-link>
                 </ul>
             </div>
             <!-- 登录注册 -->
