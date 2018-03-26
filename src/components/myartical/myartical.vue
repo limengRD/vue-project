@@ -3,11 +3,12 @@
         <ul>
             <li v-for="item in list">
                 <div class="title">
-                    <a href="">{{item.title}}</a>
+                    <a href=""  @click="showdetails(item.id)">{{item.title}}</a>
                 </div>
                 <div class="content">{{item.content}}</div>
             </li>
         </ul>
+
     </div>
 </template>
 
@@ -22,6 +23,12 @@ export default {
         this.$http.get('/showMyArtical').then(response => {
             this.list = response.data
         })
+    },
+    methods: {
+        showdetails:function(id){
+            console.log(this)
+            this.$router.push({path:'details',params: {id: id}})
+        }
     }
 }
 </script>
