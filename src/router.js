@@ -30,7 +30,7 @@ const router = new VueRouter({
         },
         {path:'/writer',component:writer},
         {path:'/myartical',component:myartical},
-        {path:'/details',component:details}
+        {name:'details',path:'/details/:id',component:details}
     ]
 })
 

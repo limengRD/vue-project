@@ -1,8 +1,11 @@
 <template>
-    <div class="writer">
+    <div class="writer">        
+        <p>{{errorTitle}}</p>
         <el-input  class="form_input" v-model="title" placeholder="请输入文章标题"></el-input>
+        <p>{{errorContent}}</p>
         <mavon-editor v-model="artical"/>
         <el-button class="saveBtn" @click="saveArticl"  type="primary">保存</el-button>
+
     </div>    
 </template>
 
@@ -12,7 +15,8 @@ export default {
         return {
             artical: '',
             title: '',
-
+            errorTitle: '',
+            errorContent: ''
         }
     },
     methods: {
@@ -20,15 +24,20 @@ export default {
             var title = this.title
             var artical = this.artical
             if( title == '') {
-                this.title = '标题不能为空'
-                return false
+                this.errorTitle = '标题不能为空'
+            } else {
+                this.errorTitle = ''
             }
             if( artical == '') {
-                this.artical = '文章内容不能为空'
-                return false;
+                this.errorContent = '文章内容不能为空'
+            } else {
+                this.errorContent = ''
             }
-            this.$http.post('/saveArtical',{artical:this.value}).then(response => {
-                console.log(response)
+            if( title !== '' && artical !== '')
+                this.$http.post('/saveArtical',{title:this.title,artical:this.artical}).then(response => {
+                    if(response.data.err_code == 0) {
+                        alert(response.data.message)
+                    }
             })  
         }
     }
@@ -49,5 +58,8 @@ export default {
     }
     .writer .el-input .active {
         border-color: rgb(250, 22, 22);
+    }
+    .writer>p {
+        color: red;
     }
  </style>

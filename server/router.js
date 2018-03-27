@@ -39,7 +39,6 @@ router.post('/login',(req,res) => {
     if(username.length <= 0 || password.length <= 0 ) {
         return res.json({err_code: 1, message: '登录失败，请填写完整的表单!'})
     }
-    console.log(req.body.username,req.body.password)
     conn.query("select * from users where username='"+ username + "' and password='" + password +"'",(err,result) => {
 
     })
@@ -61,17 +60,29 @@ router.post('/showList',(req,res) => {
         res.json({list:[{title:'title',words:['php','php','php']},{title:'title',words:['php','php','php']},{title:'title',words:['php','php','php']}]})
     }
 })
-// router.post('/saveArtical',(req,res) => {
-//     var artical = req.body.artical
-
-//     conn.query("insert into articals set?",(err,result) => {
-//         if(result.affectedRows !== 1) return res.json({err_code: 1,message: '保存失败！'})
-//         res.json({err_code: 0 ,message: '保存成功！'})
-//     })
-// })
+router.post('/saveArtical',(req,res) => {
+    var title = req.body.title
+    var artical = req.body.artical
+    var data = {title: title,Content:artical}
+    conn.query("insert into articals set?",data,(err,result) => {
+        if(result.affectedRows !== 1) return res.json({err_code: 1,message: '保存失败！'})
+        res.json({err_code: 0 ,message: '保存成功！'})
+    })
+})
 router.get('/showMyArtical',(req,res) => {
     conn.query('select * from articals',(err,result) => {
         res.json(result)
+    })
+})
+router.get('/articalDetails',(req,res) => {
+    var id = req.query.id
+    conn.query('select * from articals where id='+id,(err,result) => {
+        if(result == 0) {
+            res.json({err_code:0})
+        } else {
+            var result = result[0]
+            res.json(result)
+        }
     })
 })
 module.exports = router

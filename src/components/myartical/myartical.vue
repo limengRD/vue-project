@@ -3,16 +3,17 @@
         <ul>
             <li v-for="item in list">
                 <div class="title">
-                    <a href=""  @click="showdetails(item.id)">{{item.title}}</a>
+                    <a href="javascirpt:;"  @click="showdetails(item.id)">{{item.title}}</a>
                 </div>
                 <div class="content">{{item.content}}</div>
             </li>
         </ul>
-
+        <pagesize></pagesize>
     </div>
 </template>
 
 <script>
+import pagesize from '../../components/public/pagesize.vue'
 export default {
     data() {
         return {
@@ -26,10 +27,12 @@ export default {
     },
     methods: {
         showdetails:function(id){
-            console.log(this)
-            this.$router.push({path:'details',params: {id: id}})
+            this.$router.push({name:'details',params: {id: id}})
         }
-    }
+    },
+    components: {
+        pagesize
+    }  
 }
 </script>
 
@@ -38,7 +41,7 @@ export default {
         margin-top: 20px;
         background: #fff;
     }
-    .myartical ul li {
+    .myartical>ul li {
         height: 100px;
         border-bottom: 1px solid #cdcdcd;
         box-sizing: border-box;

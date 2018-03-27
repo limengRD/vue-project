@@ -92,7 +92,7 @@
                     case 0:
 
                     case 1:
-                        console.log(response.data)
+
                         break;
                     default:
                         alert('错误的请求!')
