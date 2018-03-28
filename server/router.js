@@ -70,9 +70,21 @@ router.post('/saveArtical',(req,res) => {
     })
 })
 router.get('/showMyArtical',(req,res) => {
-    conn.query('select * from articals',(err,result) => {
-        res.json(result)
+    var page = req.query.page? req.query.page : 1
+    // conn.query('select * from articals',(err,result) => {
+    //     res.json(result)
+    // })
+    var pagesize = (page-1) * 2
+    var data = {}
+    conn.query('select * from articals limit '+ pagesize +',2',(err,result) => {
+        data.list = result
     })
+
+    conn.query('select count(*) as sum from articals',(err,result) => {
+        data.sum = result[0].sum
+        res.json(data)
+    })
+
 })
 router.get('/articalDetails',(req,res) => {
     var id = req.query.id

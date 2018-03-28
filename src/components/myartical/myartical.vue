@@ -8,7 +8,7 @@
                 <div class="content">{{item.content}}</div>
             </li>
         </ul>
-        <pagesize></pagesize>
+        <pagesize v-on:showlist="reshowlist" :countPage="countPage"></pagesize>
     </div>
 </template>
 
@@ -17,17 +17,22 @@ import pagesize from '../../components/public/pagesize.vue'
 export default {
     data() {
         return {
-            list: []
+            list: [],
+            countPage:0
         }
     },
     created(){
         this.$http.get('/showMyArtical').then(response => {
-            this.list = response.data
+            this.list= response.list
+            this.countPage = response.sum
         })
     },
     methods: {
         showdetails:function(id){
             this.$router.push({name:'details',params: {id: id}})
+        },
+        reshowlist:function(list) {
+            this.list = list
         }
     },
     components: {
