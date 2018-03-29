@@ -8,7 +8,7 @@
                 <div class="content">{{item.content}}</div>
             </li>
         </ul>
-        <pagesize v-on:showlist="reshowlist" :countPage="countPage"></pagesize>
+        <pagesize v-on:showlist="reshowlist" :allDataSize="allDataSize"></pagesize>
     </div>
 </template>
 
@@ -18,13 +18,14 @@ export default {
     data() {
         return {
             list: [],
-            countPage:0
+            allDataSize:0,
         }
     },
     created(){
         this.$http.get('/showMyArtical').then(response => {
-            this.list= response.list
-            this.countPage = response.sum
+            this.list= response.data.list
+            // 返回的所有数据条数
+            this.allDataSize = response.data.sum
         })
     },
     methods: {

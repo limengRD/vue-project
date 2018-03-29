@@ -5,9 +5,9 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page.sync="currentPage3"
-            :page-size="2"
+            :page-size="5"
             layout="prev, pager, next, jumper"
-            :total="countPage">
+            :total="allDataSize">
             </el-pagination>
         </div>
     </div>  
@@ -26,7 +26,7 @@ export default {
     methods: {
         handleCurrentChange(val) {
             this.$http.get('/showMyArtical',{params:{page:val}}).then(response => {
-                this.$emit('showlist', response.data);
+                this.$emit('showlist', response.data.list);
             })
       },
         handleSizeChange(val) {
@@ -34,7 +34,7 @@ export default {
       }
     },
     props: {
-        countPage
+        allDataSize: Number
     }
 }
 </script>

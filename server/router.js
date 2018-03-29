@@ -74,9 +74,9 @@ router.get('/showMyArtical',(req,res) => {
     // conn.query('select * from articals',(err,result) => {
     //     res.json(result)
     // })
-    var pagesize = (page-1) * 2
+    var pagesize = (page-1) * 5
     var data = {}
-    conn.query('select * from articals limit '+ pagesize +',2',(err,result) => {
+    conn.query('select * from articals limit '+ pagesize +',5',(err,result) => {
         data.list = result
     })
 
