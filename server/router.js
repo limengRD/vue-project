@@ -51,6 +51,7 @@ router.post('/shownav',(req,res) => {
 router.post('/showFirstList',(req,res) => {
     res.json({list:[{title:'title',words:['前端','前端','前端']},{title:'title',words:['前端','前端','前端']},{title:'title',words:['前端','前端','前端']}]})
 })
+
 router.post('/showList',(req,res) => {
     if(req.body.navList == 'web') {
         res.json({list:[{title:'title',words:['前端','前端','前端']},{title:'title',words:['前端','前端','前端']},{title:'title',words:['前端','前端','前端']}]})
@@ -60,6 +61,7 @@ router.post('/showList',(req,res) => {
         res.json({list:[{title:'title',words:['php','php','php']},{title:'title',words:['php','php','php']},{title:'title',words:['php','php','php']}]})
     }
 })
+
 router.post('/saveArtical',(req,res) => {
     var title = req.body.title
     var artical = req.body.artical
@@ -69,6 +71,7 @@ router.post('/saveArtical',(req,res) => {
         res.json({err_code: 0 ,message: '保存成功！'})
     })
 })
+
 router.get('/showMyArtical',(req,res) => {
     var page = req.query.page? req.query.page : 1
     // conn.query('select * from articals',(err,result) => {
@@ -86,6 +89,7 @@ router.get('/showMyArtical',(req,res) => {
     })
 
 })
+
 router.get('/articalDetails',(req,res) => {
     var id = req.query.id
     conn.query('select * from articals where id='+id,(err,result) => {
@@ -93,7 +97,16 @@ router.get('/articalDetails',(req,res) => {
             res.json({err_code:0})
         } else {
             var result = result[0]
-            res.json(result)
+            res.json({err_code:0,details:result})
+        }
+    })
+})
+
+router.post('/deleteArtical',(req,res) => {
+    var id = req.body.id
+    conn.query('delete from articals where id='+ id ,(err,result) => {
+        if(result.affectedRows == 1) {
+            res.json({err_code: 0 ,message: '删除成功！'})
         }
     })
 })

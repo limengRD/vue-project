@@ -19,7 +19,7 @@ export default {
     },
     created() {
         this.$http.get('/articalDetails',{params:{id:this.id}}).then(response => {
-            this.details = response.data
+            this.details = response.data.details
         })
     }
 }

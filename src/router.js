@@ -4,6 +4,7 @@ import writer from './components/writer/Writer.vue'
 import showlist from './components/public/ShowList.vue'
 import myartical from './components/myartical/myartical.vue'
 import details from './components/myartical/Details.vue'
+import editor from './components/public/Editor.vue'
 
 const router = new VueRouter({
     linkActiveClass:'list-active',
@@ -25,12 +26,13 @@ const router = new VueRouter({
                 {
                     path: ':nav',
                     component: showlist
-                },
+                }
             ]
         },
         {path:'/writer',component:writer},
         {path:'/myartical',component:myartical},
-        {name:'details',path:'/details/:id',component:details}
+        {name:'details',path:'/details/:id',component:details},
+        {name:'editor',path:'/editor/:id',component:editor}
     ]
 })
 
