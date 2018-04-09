@@ -110,4 +110,18 @@ router.post('/deleteArtical',(req,res) => {
         }
     })
 })
+
+router.post('/editorArtical',(req,res) => {
+    var title = req.body.title
+    var artical = req.body.artical
+    var id = req.body.id
+    var data = {title: title,Content:artical}
+    conn.query("update articals set title='" + title + "',content='"+ artical+"' where id=" + id + ";",(err,result) => {
+        if(result.affectedRows !== 1) return res.json({err_code: 1,message: '保存失败！'})
+        res.json({err_code: 0 ,message: '保存成功！'})
+    })
+})
+router.get('/checkuser',(req,res) =>{
+    res.json({err_code: 1})
+})
 module.exports = router

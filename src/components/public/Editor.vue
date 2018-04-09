@@ -41,7 +41,7 @@ export default {
                 this.errorContent = ''
             }
             if( title !== '' && artical !== '')
-                this.$http.post('/saveArtical',{title:this.title,artical:this.artical}).then(response => {
+                this.$http.post('/editorArtical',{title:this.title,artical:this.artical,id:this.id}).then(response => {
                     if(response.data.err_code == 0) {
                         alert(response.data.message)
                     }
