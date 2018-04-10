@@ -31,14 +31,12 @@
                         <el-form-item label="年龄" prop="age">
                             <el-input v-model.number="ruleForm2.age"></el-input>
                         </el-form-item>
+                        <el-button type="text" @click="registerBtn">注册</el-button>
                         <el-form-item>
                             <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
                             <el-button @click="resetForm('ruleForm2')">重置</el-button>
                         </el-form-item>
                         </el-form>
-                    </span>
-                    <span slot="footer" class="dialog-footer">
-                        <el-button type="primary" @click="loginAjax">登 录</el-button>
                     </span>
                 </el-dialog>
                 <!-- 注册弹出框 -->

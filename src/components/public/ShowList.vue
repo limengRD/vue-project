@@ -1,7 +1,7 @@
 <template>
     <ul class="showlist-ul">
         <li v-for="(item,index) in list">
-            <div class="list-main">
+            <div class="list-main"> 
                 <div class="list-title">
                     <a href="#">{{item.title}}</a>
                 </div>
