@@ -124,4 +124,7 @@ router.post('/editorArtical',(req,res) => {
 router.get('/checkuser',(req,res) =>{
     res.json({err_code: 1})
 })
+router.get('/searchSomthing',(req,res) => {
+    console.log(req)
+})
 module.exports = router

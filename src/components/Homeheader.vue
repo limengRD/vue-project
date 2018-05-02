@@ -58,7 +58,7 @@
             </div>
             <!-- 搜索框 -->
             <div class="search-box">
-                <el-input v-model="input" placeholder="请输入内容"></el-input>
+                <el-input v-model="serachMeassge" placeholder="请输入内容" @input="searchSomthing"></el-input>
             </div>
         </header>
     </el-container>
@@ -114,6 +114,7 @@
       return {
         login: false,
         register: false,
+        serachMeassge: '',
         username: '',
         password: '',
         nickname: '',
@@ -193,6 +194,11 @@
             return false;
           }
         });
+      },
+      searchSomthing:function() {
+        this.$http.get("/searchSomthing",{params:{message:this.serachMeassge}}).then(res => {
+            console.log(res)
+        })
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
